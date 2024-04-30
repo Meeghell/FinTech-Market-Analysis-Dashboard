@@ -1,0 +1,56 @@
+/* Basic reset for margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style for the body to include a font and central alignment */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+}
+
+/* Main content area styling */
+.container {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Styling for the header */
+h1 {
+    color: #0275d8;
+    margin-bottom: 20px;
+}
+
+/* Styling for form elements */
+select, button {
+    padding: 10px;
+    margin-top: 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: #fff;
+    cursor: pointer;
+}
+
+button {
+    background-color: #5cb85c;
+    color: white;
+    border-color: #4cae4c;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
