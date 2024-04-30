@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Analysis Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Market Analysis Dashboard</h1>
+        <p>Select the type of data you want to analyze:</p>
+
+        <!-- Dropdown for selecting data type -->
+        <select id="dataTypeSelect">
+            <option value="stocks">Stocks</option>
+            <option value="crypto">Cryptocurrencies</option>
+        </select>
+
+        <!-- Button to trigger data fetch -->
+        <button onclick="fetchData()">Load Data</button>
+
+        <!-- Placeholder for displaying fetched data or visualizations -->
+        <div id="dataDisplay">
+            <p>Data will be displayed here after selection.</p>
+        </div>
+    </div>
+
+    <!-- JavaScript to handle the interaction -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+        function fetchData() {
+            const dataType = document.getElementById('dataTypeSelect').value;
+            console.log('Fetching data for:', dataType);
+            // Here you can add the code to fetch data from the server
+            // Update the 'dataDisplay' div with fetched data
+        }
+    </script>
+</body>
+</html>
