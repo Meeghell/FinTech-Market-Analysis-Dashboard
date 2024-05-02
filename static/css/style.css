@@ -17,14 +17,13 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    margin: 20px;
     color: #333;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    justify-content: center; /* Centers children horizontally in the viewport */
+    align-items: center; /* Centers children vertically in the viewport */
+    min-height: 100vh; /* Full viewport height */
     background-color: #f4f4f4;
-    flex-direction: column; /* Ensures stacking on smaller screens */
+    padding: 20px; /* Padding to ensure some space around the container */
 }
 
 /* Main content area styling */
@@ -37,6 +36,9 @@ body {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     width: 80%; /* Responsive width */
     max-width: 600px; /* Maximum width */
+    display: flex;
+    flex-direction: column; /* Stacks children vertically */
+    align-items: center; /* Center-align children horizontally */
 }
 
 /* Styling for the header */
@@ -87,7 +89,7 @@ button:hover {
     background-color: var(--success-hover-color);
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
     body {
         margin: 10px;

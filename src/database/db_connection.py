@@ -1,3 +1,4 @@
+import os
 import psycopg2
 from psycopg2 import OperationalError
 
@@ -7,10 +8,10 @@ def create_connection():
     """
     try:
         conn = psycopg2.connect(
-            host="localhost",
-            database="your_database_name",
-            user="your_username",
-            password="your_password"
+            host=os.getenv("DB_HOST", "localhost"),
+            database=os.getenv("DB_NAME"),
+            user=os.getenv("DB_USER"),
+            password=os.getenv("DB_PASSWORD")
         )
         print("Connection to PostgreSQL DB successful")
         return conn
