@@ -8,30 +8,19 @@ function fetchData() {
     // This function gets called when the user clicks the 'Load Data' button.
     const dataType = document.getElementById('dataTypeSelect').value;
     const displayDiv = document.getElementById('dataDisplay');
+    const stockImage = document.getElementById('stockImage');
+    const cryptoImage = document.getElementById('cryptoImage');
 
-    // Display a loading message in the dataDisplay div while fetching data.
+    // Clear previous content and show a loading message.
     displayDiv.innerHTML = '<p>Loading data...</p>';
+    stockImage.style.display = 'none';
+    cryptoImage.style.display = 'none';
 
-    // Determine which API URL to use based on the data type selected in the dropdown.
-    let apiUrl;
-    if (dataType === 'stocks') {
-        apiUrl = 'https://paper-api.alpaca.markets/v2/stocks'; // Modify as needed
-    } else if (dataType === 'crypto') {
-        apiUrl = 'https://paper-api.alpaca.markets/v2/crypto'; // Modify as needed
-    }
-
-    // Prepare headers for the API request including API keys for authentication.
-    // This is a critical security concern if done in client-side code in production.
-    const headers = new Headers({
-        'APCA-API-KEY-ID': 'PKHRIE1T8QEDTBN7ONLV',
-        'APCA-API-SECRET-KEY': 'nB9cguxMyLQFx8JXtn5OU9kn7Ye5Rpz7VmrY7q7Q'
-    });
+    // Determine which Flask endpoint to use based on the data type selected in the dropdown.
+    let apiUrl = `/fetch-data?dataType=${dataType}`;
 
     // Make the API request using the fetch API.
-    fetch(apiUrl, {
-        method: 'GET', // Most data fetching will use the GET method.
-        headers: headers
-    })
+    fetch(apiUrl)
     .then(response => {
         if (!response.ok) {
             // If the response is not 2xx, throw an error.
@@ -40,9 +29,15 @@ function fetchData() {
         return response.json(); // Parse JSON data from the response
     })
     .then(data => {
-        // Handle the data received from the API.
-        displayDiv.innerHTML = `<p>Data loaded successfully! Here are details.</p>`;
-        console.log('Data fetched:', data); // Output data to console for debugging.
+        // Update the display based on the data type and data received.
+        if (dataType === 'stocks') {
+            stockImage.src = 'path/to/generated/stock_visualization.png'; // Update with actual generated path
+            stockImage.style.display = 'block';
+        } else if (dataType === 'crypto') {
+            cryptoImage.src = 'path/to/generated/crypto_visualization.png'; // Update with actual generated path
+            cryptoImage.style.display = 'block';
+        }
+        displayDiv.innerHTML = `<p>Data loaded successfully! Here are details: ${data.message}</p>`;
     })
     .catch(error => {
         // Handle any errors that occurred during the fetch operation.
