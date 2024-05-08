@@ -34,8 +34,7 @@ body {
     border-radius: var(--border-radius);
     background: white;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    width: 80%; /* Responsive width */
-    max-width: 600px; /* Maximum width */
+    width: 95%; /* Allows some margin but uses most of the horizontal space */
     display: flex;
     flex-direction: column; /* Stacks children vertically */
     align-items: center; /* Center-align children horizontally */
@@ -63,7 +62,7 @@ select, button {
     border: 1px solid #ccc;
     background: #fff;
     cursor: pointer;
-    width: auto; /* Default width */
+    width: auto; /* Set to auto to prevent override on desktop views */
 }
 
 /* Focus styles for interactive elements */
@@ -89,41 +88,16 @@ button:hover {
     background-color: var(--success-hover-color);
 }
 
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-    body {
-        margin: 10px;
-    }
-
-    .container {
-        width: 90%; /* Adjust width for smaller devices */
-    }
-
-    select, button {
-        margin-top: 10px;
-        margin-right: 0;
-        width: 100%; /* Full width on small screens */
-    }
+/* Styling for image and iframe display */
+img, iframe {
+    width: 100%; /* Ensures image/iframe takes up all the horizontal space of its container */
+    height: auto; /* Adjusts the height automatically based on the aspect ratio */
+    display: block; /* Ensures the image/iframe does not have extra space around it */
+    margin-top: 20px; /* Adds space above the image/iframe */
 }
 
-/* Utility classes */
-.text-center {
-    text-align: center;
-}
-
-.text-primary {
-    color: var(--primary-color);
-}
-
-/* Styling for image display */
-img {
-    max-width: 100%; /* Ensures image does not exceed its container */
-    height: auto; /* Keeps the image proportion */
-    margin-top: 20px; /* Adds space above the image */
-    display: none; /* Hide images by default */
-}
-
-/* Overview Section style adjustments */
-.overview-item {
-    margin-bottom: 20px;
+/* Additional iframe specific styling */
+#visualIframe {
+    min-height: 500px; /* Minimum height to ensure visibility */
+    border: none; /* Removes border around the iframe */
 }

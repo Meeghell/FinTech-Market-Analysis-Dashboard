@@ -35,7 +35,7 @@ function fetchData() {
     })
     .then(data => {
         // Update the display based on the data type and data received.
-        let visualPath = `visualizations/${dataType}_visual.html`; // Path to the generated HTML file
+        let visualPath = `static/external_data/${dataType}_visuals.html`; // Corrected path to the generated HTML file within the static folder
         visualIframe.src = visualPath;
         visualIframe.style.display = 'block'; // Show the iframe
         displayDiv.innerHTML = `<p>Data loaded successfully! Here are details: ${data.message}</p>`;
