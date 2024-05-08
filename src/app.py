@@ -1,33 +1,51 @@
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
+import nbformat
+from nbconvert.preprocessors import ExecutePreprocessor
+import os
 
-app = Flask(__name__, template_folder='../templates')
-CORS(app)  # Enable CORS to allow resources to be shared across different origins if needed
+# Determine the base directory
+base_dir = os.path.abspath(os.path.dirname(__file__))
+
+app = Flask(__name__,
+            static_folder=os.path.join(base_dir, 'static'),
+            template_folder=os.path.join(base_dir, 'templates'))
+CORS(app)
+
+def run_notebook(notebook_name):
+    # Path to the notebook
+    notebook_path = os.path.join(base_dir, '../notebooks', notebook_name)
+    # Load the notebook, execute it, and save the output
+    with open(notebook_path) as f:
+        nb = nbformat.read(f, as_version=4)
+    ep = ExecutePreprocessor(timeout=600, kernel_name='python3')
+    ep.preprocess(nb, {'metadata': {'path': os.path.join(base_dir, '../notebooks')}})  # Adjusted path
+    with open(notebook_path, 'wt') as f:
+        nbformat.write(nb, f)
 
 @app.route('/')
 def home():
-    # Serve the main page
     return render_template('index.html')
 
 @app.route('/fetch-data', methods=['POST'])
 def get_data():
-    # Endpoint to handle data requests based on the type (stocks or crypto)
     data_type = request.json.get('type')
     if data_type == 'stocks':
-        # Simulate fetching stock data
-        data = {"message": "Stocks data would be here"}
+        run_notebook('data_analysis.ipynb')
+        data = {"message": "Stocks data processed"}
     elif data_type == 'crypto':
-        # Simulate fetching cryptocurrency data
-        data = {"message": "Crypto data would be here"}
+        run_notebook('crypto_data.ipynb')
+        data = {"message": "Crypto data processed"}
+    elif data_type == 'sp500':
+        run_notebook('sp500_data.ipynb')
+        data = {"message": "S&P 500 data processed"}
     else:
-        # Handle cases where the data type is neither 'stocks' nor 'crypto'
         return jsonify({'error': 'Invalid data type'}), 400
 
     return jsonify(data)
 
 @app.route('/query-data', methods=['GET'])
 def query_data():
-    # Simulated endpoint to fetch general data, useful for testing
     results = [{"id": 1, "name": "Sample Data"}]
     return jsonify(results)
 
