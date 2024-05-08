@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> <!-- Improve compatibility with IE -->
+    <title>Market Analysis Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Market Analysis Dashboard</h1>
+        <p>Select the type of data you want to analyze:</p>
+
+        <!-- Dropdown for selecting data type with aria-label for accessibility -->
+        <select id="dataTypeSelect" aria-label="Select data type">
+            <option value="stocks">Stocks</option>
+            <option value="crypto">Cryptocurrencies</option>
+            <option value="sp500">S&P 500</option>
+        </select>
+
+        <!-- Button to trigger data fetch with improved accessibility -->
+        <button id="loadDataButton" aria-label="Load selected data type">Load Data</button>
+
+        <!-- Iframe for displaying interactive visuals -->
+        <div id="visualDisplay">
+            <iframe id="visualIframe" style="width:100%; height:500px; border:none;" src=""></iframe>
+        </div>
+
+        <!-- Overview Section for displaying key metrics -->
+        <div id="overview">
+            <h2>Market Overview</h2>
+            <div id="currentPrices" class="overview-item"><p>Current Prices will display here...</p></div>
+            <div id="dailyChanges" class="overview-item"><p>Daily Changes will display here...</p></div>
+            <div id="volumeTrade" class="overview-item"><p>Volume of Trade will display here...</p></div>
+        </div>
+
+        <!-- Charts Section for data visualizations -->
+        <div id="charts">
+            <h2>Interactive Charts</h2>
+            <canvas id="timeSeriesChart"></canvas>
+            <canvas id="comparisonChart"></canvas>
+        </div>
+
+        <!-- Detailed Analysis Section -->
+        <div id="detailedAnalysis">
+            <h2>Detailed Analysis</h2>
+            <div id="historicalData"><p>Historical Data will display here...</p></div>
+            <div id="predictiveAnalytics"><p>Predictive Analytics will display here...</p></div>
+            <div id="marketNews"><p>Latest Market News will display here...</p></div>
+        </div>
+
+        <!-- Placeholder for displaying fetched data or visualizations -->
+        <div id="dataDisplay">
+            <p>Data will be displayed here after selection.</p>
+        </div>
+    </div>
+
+    <!-- JavaScript to handle the interaction, placed at the end for better performance -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
