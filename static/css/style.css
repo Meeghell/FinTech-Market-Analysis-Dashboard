@@ -114,3 +114,16 @@ button:hover {
 .text-primary {
     color: var(--primary-color);
 }
+
+/* Styling for image display */
+img {
+    max-width: 100%; /* Ensures image does not exceed its container */
+    height: auto; /* Keeps the image proportion */
+    margin-top: 20px; /* Adds space above the image */
+    display: none; /* Hide images by default */
+}
+
+/* Overview Section style adjustments */
+.overview-item {
+    margin-bottom: 20px;
+}
