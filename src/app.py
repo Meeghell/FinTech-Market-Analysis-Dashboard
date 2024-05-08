@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 from flask_cors import CORS
 import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
@@ -19,7 +19,7 @@ def run_notebook(notebook_name):
     with open(notebook_path) as f:
         nb = nbformat.read(f, as_version=4)
     ep = ExecutePreprocessor(timeout=600, kernel_name='python3')
-    ep.preprocess(nb, {'metadata': {'path': os.path.join(base_dir, '../notebooks')}})  # Adjusted path
+    ep.preprocess(nb, {'metadata': {'path': os.path.join(base_dir, '../notebooks')}})
     with open(notebook_path, 'wt') as f:
         nbformat.write(nb, f)
 
@@ -43,6 +43,11 @@ def get_data():
         return jsonify({'error': 'Invalid data type'}), 400
 
     return jsonify(data)
+
+@app.route('/visualizations/<path:filename>')
+def visualization_files(filename):
+    # Serve files from the external_data directory
+    return send_from_directory(os.path.join(base_dir, '../external_data'), filename)
 
 @app.route('/query-data', methods=['GET'])
 def query_data():

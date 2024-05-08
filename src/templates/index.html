@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"> <!-- Improve compatibility with IE -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Market Analysis Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
@@ -12,18 +12,18 @@
         <h1>Market Analysis Dashboard</h1>
         <p>Select the type of data you want to analyze:</p>
 
-        <!-- Dropdown for selecting data type with aria-label for accessibility -->
+        <!-- Dropdown for selecting data type -->
         <select id="dataTypeSelect" aria-label="Select data type">
             <option value="stocks">Stocks</option>
             <option value="crypto">Cryptocurrencies</option>
             <option value="sp500">S&P 500</option>
         </select>
 
-        <!-- Button to trigger data fetch with improved accessibility -->
+        <!-- Button to trigger data fetch -->
         <button id="loadDataButton" aria-label="Load selected data type">Load Data</button>
 
         <!-- Iframe for displaying interactive visuals -->
-        <div id="visualDisplay">
+        <div id="visualDisplay" style="width: 100%;">
             <iframe id="visualIframe" style="width:100%; height:500px; border:none;" src=""></iframe>
         </div>
 
@@ -56,7 +56,6 @@
         </div>
     </div>
 
-    <!-- JavaScript to handle the interaction, placed at the end for better performance -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
